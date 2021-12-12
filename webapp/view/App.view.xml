@@ -1,0 +1,93 @@
+<!---->
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.App"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:c="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:table="sap.ui.table"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+
+        <App>
+        <pages>
+            <Page title="User info">
+                <content>
+
+    <VBox class="sapUiSmallMargin" >
+  
+		<f:SimpleForm id="SimpleFormToolbar"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			singleContainerFullSize="false" >
+			<f:toolbar>
+				<Toolbar><Title text="Enter details"/></Toolbar>
+			</f:toolbar>
+            <FlexBox
+        alignItems="Center"
+        justifyContent="Center">
+ 
+         <l:VerticalLayout  width="100%">
+		<Label required="true" text="Name" />
+		<Input id="inputName"
+			value="{/newUser/name}"
+            width="100%"
+            valueState="None"
+			change= ".onNameChange" />
+
+		<Label required="true" text="Mobile No." />
+		<Input id="inputMobile"
+        value="{/newUser/mobile}"
+        valueLiveUpdate="true"
+        width='100%'
+        valueState="None"
+        change= '.onMobileChange'/>
+
+        <Label required="true" text="Date" />
+         <DatePicker id="inputDate"
+            value="{/newUser/date}"
+            valueState="None"
+			change=".onDateChange"
+			class="sapUiSmallMarginBottom"
+            valueFormat="dd-MM-yyyy"
+             width="100%"
+            />
+        
+        
+  
+		<Button text="Submit" press=".onSubmit" />
+        <Button text="Reset" press=".resetForm" />
+
+   </l:VerticalLayout>
+   </FlexBox>
+	</f:SimpleForm>
+     
+	</VBox>
+    <Text text="---------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------------"></Text>
+	 
+      <table:Table id="myTable" rows="{ path: '/Users', events: { change: '.onBindingChange' } }">
+            <table:columns>
+                        <table:Column>
+                                  <Label text="Name"/>
+                                        <table:template><Text text="{name}" ></Text></table:template>
+                        </table:Column>
+                        <table:Column >
+                                  <Label text="Contact"/>
+                                        <table:template><Text text="{mobile}" ></Text></table:template>
+                        </table:Column>
+                         <table:Column >
+                                  <Label text="DOB"/>
+                                        <table:template><Text text="{date}" ></Text></table:template>
+                        </table:Column>
+            </table:columns>
+  </table:Table>
+
+
+
+         </content>
+       </Page>
+     </pages>
+    </App>
+        
+</mvc:View>
